@@ -10,7 +10,9 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
+import SkipLink from "./skip-link"
 import "./layout.css"
+import CheckoutModal from "./checkout-modal"
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,6 +27,7 @@ const Layout = ({ children }) => {
 
   return (
     <>
+      <SkipLink />
       <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
       <div
         style={{
@@ -33,7 +36,7 @@ const Layout = ({ children }) => {
           padding: `0 1.0875rem 1.45rem`,
         }}
       >
-        <main>{children}</main>
+        <main id={'main'}>{children}</main>
         <footer style={{
           marginTop: `2rem`
         }}>
@@ -42,6 +45,7 @@ const Layout = ({ children }) => {
           <a href="https://www.gatsbyjs.com">Gatsby</a>
         </footer>
       </div>
+      <CheckoutModal />
     </>
   )
 }
